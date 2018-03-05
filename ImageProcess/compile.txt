@@ -1,0 +1,12 @@
+<h3>环境说明 </h3>
+<div>
+1.编译器 Qt Creatot 4.5 <br />
+2.框架 Qt5.10 Opencv 3.4.0(包括contrib) 4.5 <br />
+3.相关下载 <br />
+<a href="https://download.qt.io/official_releases/qt/">Qt  5.10 </a><br />
+<a href="https://blog.zhfsky.com/2018/01/16/opencv-3-4-0-contrib-download.html">OpenCV 3.4.0(Win 10x64 vs2017编译完成)</a><br />
+4.说明：visual studio2017下有Qt的官方插件，方便编译和调试Qt应用，但前提是安装了Qt Creator的QT核心库
+<h3>编译指南</h3>
+1.将下载完成的opencv_xx 重命名为opencv 放入代码项目的Libs文件夹下,应该是类似这样的结构 /Libs/opencv/bin
+2.编译选择x64 Release
+</div>

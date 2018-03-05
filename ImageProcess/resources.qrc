@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/language">
+        <file>ImageProcess_CN.qm</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/about.png</file>
+        <file>images/blog.png</file>
+        <file>images/case.png</file>
+        <file>images/close.png</file>
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/delete.png</file>
+        <file>images/donate.png</file>
+        <file>images/encryption.png</file>
+        <file>images/find.png</file>
+        <file>images/font.png</file>
+        <file>images/loginout.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/print.png</file>
+        <file>images/reboot .png</file>
+        <file>images/replace.png</file>
+        <file>images/save.png</file>
+        <file>images/save-as.png</file>
+        <file>images/statics.png</file>
+        <file>images/undo.png</file>
+        <file>images/update.png</file>
+        <file>images/user.png</file>
+    </qresource>
+    <qresource prefix="/help">
+        <file>compile.txt</file>
+    </qresource>
+</RCC>
