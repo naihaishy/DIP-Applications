@@ -39,6 +39,7 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
+    <addaction name="actionOpen_Multi"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -59,9 +60,26 @@
     <addaction name="actionAbout"/>
     <addaction name="actionCompile_Guide"/>
    </widget>
+   <widget class="QMenu" name="menuDetect">
+    <property name="title">
+     <string>Detect</string>
+    </property>
+    <addaction name="actionDetecting"/>
+    <addaction name="actionSketching"/>
+    <addaction name="separator"/>
+    <addaction name="actionDetect_Control_Panel"/>
+   </widget>
+   <widget class="QMenu" name="menuTest">
+    <property name="title">
+     <string>Test</string>
+    </property>
+    <addaction name="actionDetect_Test"/>
+   </widget>
    <addaction name="menuOpen_O"/>
    <addaction name="menuDehaze"/>
+   <addaction name="menuDetect"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuTest"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -146,6 +164,41 @@
    </property>
    <property name="text">
     <string>Compile Guide</string>
+   </property>
+  </action>
+  <action name="actionDetecting">
+   <property name="text">
+    <string>Detecting</string>
+   </property>
+  </action>
+  <action name="actionSketching">
+   <property name="text">
+    <string>Sketching</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionDetect_Control_Panel">
+   <property name="text">
+    <string>Detect Control Panel</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionOpen_Multi">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/folder-open.png</normaloff>:/images/images/folder-open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Multi</string>
+   </property>
+  </action>
+  <action name="actionDetect_Test">
+   <property name="text">
+    <string>Detect Test</string>
    </property>
   </action>
  </widget>

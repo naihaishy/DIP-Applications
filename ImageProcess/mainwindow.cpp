@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 
 #include "dehaze.h"
+#include "detect.h"
+#include "test.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -18,6 +20,15 @@ MainWindow::~MainWindow()
 void MainWindow::InitMenu()
 {
     ui->menuDehaze->setEnabled(false);
+    ui->menuDetect->setEnabled(false);
+
+    // 正常状态信息
+    statusLabel = new QLabel();
+    statusLabel->setMinimumSize(150,20);
+    statusLabel->setFrameShape(QFrame::WinPanel);
+    statusLabel->setFrameShadow(QFrame::Sunken);
+    statusLabel->setText(tr("Hello"));
+    ui->statusBar->addWidget(statusLabel);
 
 }
 
@@ -31,27 +42,44 @@ bool MainWindow::loadImage(const QString fileName)
         QMessageBox::warning(this, tr("Image Process"), tr("Image data is empty"));
         return false;
     }
-    //opencv形式显示图像
-    //cv::namedWindow("Src Image", 0);
-    //cv::imshow("Src Image", m_SrcImage);
-
     //Qt显示图像
     display(m_SrcImage);
-
     // 更新菜单状态
     ui->menuDehaze->setEnabled(true);
-
     // 设置当前文件
     CurrentFile = QFileInfo(fileName).canonicalFilePath();
-
     // 设置窗口标题
     setWindowTitle(CurrentFile);
-
     return true;
 }
 
+/***加载图像***/
+bool MainWindow::loadImage(const QStringList fileNames)
+{
+    //读取图像数据
+    std::for_each (fileNames.begin(), fileNames.end(), [&](const QString& item){
+        Mat mat = cv::imread(item.toLocal8Bit().toStdString());
+        if(mat.empty()){
+            QMessageBox::warning(this, tr("Image Process"), tr("Image data is empty"));
+            return false;
+        }
+        m_SrcImageVec.push_back(mat);
+    });
+    //Qt显示图像
+    display(m_SrcImageVec, fileNames);
+    // 更新菜单状态
+    ui->menuDetect->setEnabled(true);
+
+    // 设置当前文件
+    CurrentFile = tr("Multi Files");
+    // 设置窗口标题
+    setWindowTitle(CurrentFile);
+    return true;
+}
+
+
 /***显示图像***/
-void MainWindow::display(Mat mat)
+void MainWindow::display(Mat &mat)
 {
     Mat rgb;//opencv图像数据类型
     QImage img;
@@ -69,11 +97,50 @@ void MainWindow::display(Mat mat)
     ui->imageLabel->show();
 }
 
+/***显示图像***/
+void MainWindow::display(vector<Mat> &matVec, QStringList fileNames)
+{
+    QDialog *dlg = new QDialog(this);
+    dlg->setWindowTitle(QObject::tr("Multi Images"));
+    dlg->resize(QSize(800,600));
+    dlg->setFont(QFont("Microsoft Yahei"));
+
+    QGridLayout *mainLayout = new QGridLayout(dlg);
+    QHBoxLayout *layout = new QHBoxLayout;
+
+    for (int i = 0; i< matVec.size(); ++i) {
+        Mat rgb;
+        QImage img;
+        Mat mat = matVec[i];
+        if(mat.channels()==3)
+        {
+            cvtColor(mat, rgb, CV_BGR2RGB);
+            img = QImage((const uchar*)(rgb.data), rgb.cols, rgb.rows, rgb.cols*rgb.channels(), QImage::Format_RGB888);
+        }
+        else
+        {
+            img = QImage((const uchar*)(mat.data), mat.cols, mat.rows, mat.cols*mat.channels(), QImage::Format_Indexed8);
+        }
+
+        QLabel *label = new QLabel();
+
+        label->setPixmap(QPixmap::fromImage(img));
+        label->resize(label->pixmap()->size());
+        layout->addWidget(label);
+    }
+    layout->setMargin(3);
+    mainLayout->addLayout(layout, 0,0);
+
+    dlg->show();
+}
+
+
 
 
 /***保存效果图像***/
 bool MainWindow::saveImage()
 {
+
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Image"), tr("result.png"), tr("Images (*.png *.bmp *.jpg)"));
     if(fileName.isEmpty())
     {
@@ -117,9 +184,21 @@ void MainWindow::imageValidInfo()
 void MainWindow::on_actionOpen_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), tr(""), tr("Image (*.png *.bmp *.jpg)") );
+
     if(!fileName.isEmpty())
     {
         loadImage(fileName);//加载图像
+    }
+}
+
+/***SLOT:打开多个文件***/
+void MainWindow::on_actionOpen_Multi_triggered()
+{
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Open Image"), tr(""), tr("Image (*.png *.bmp *.jpg)") );
+
+    if(!fileNames.isEmpty())
+    {
+        loadImage(fileNames);//加载图像
     }
 }
 
@@ -239,12 +318,34 @@ void MainWindow::on_actionDeHaze_Control_Panel_triggered()
 
 
 
-/******作业2: ******/
+/******作业2: detectint and sketching the common******/
+void MainWindow::on_actionDetecting_triggered()
+{
+    statusLabel->setText(tr("Process is running!"));
+
+    QMessageBox::information(this, tr("Process takes so long"), tr("Please wait patiently due to the Intensive Computation\n"));
+
+    Detect detect(m_SrcImageVec);
+    detect.doDetecting();
+
+    statusLabel->setText(tr("Hello"));
+
+}
+
+void MainWindow::on_actionSketching_triggered()
+{
+
+}
+
+void MainWindow::on_actionDetect_Control_Panel_triggered()
+{
+
+}
 
 
+void MainWindow::on_actionDetect_Test_triggered()
+{
 
-
-
-
+}
 
 

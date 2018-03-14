@@ -17,7 +17,7 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2\highgui\highgui.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/ximgproc.hpp>
 
 #include <iostream>
@@ -43,6 +43,10 @@ struct DarkChannelMost
     bool operator >(const DarkChannelMost &drak)const   //降序排序
     {
         return pixel > drak.pixel;
+    }
+    bool operator <(const DarkChannelMost &drak)const   //升序排序
+    {
+        return pixel < drak.pixel;
     }
 
 };
@@ -105,7 +109,7 @@ private:
     void EstimatingTransmissionExchangeMin();
 	void OriginScene();
 
-    void display(Mat &srcMat, QLabel *label);
+    void display(const Mat &srcMat, QLabel *label);
     void MinFilter(Mat &inputMat, Mat &outputMat);
     void minimumPixelInChannles(Mat &inputMat, Mat &outputMat);
     void NormalizeSrcMat(Mat &inputMat, Mat &outputMat, int *light);

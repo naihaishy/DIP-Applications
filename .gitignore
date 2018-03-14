@@ -1,2 +1,9 @@
-
 ImageProcess/Libs/opencv
+ImageProcess/.vs
+ImageProcess/debug
+ImageProcess/GeneratedFiles
+ImageProcess/release
+ImageProcess/x64
+ImageProcess/.qmake.stash
+ImageProcess/*.vcxproj*
+ImageProcess/*.sln

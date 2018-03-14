@@ -16,12 +16,16 @@
 #include <QTextEdit>
 #include <QPainter>
 #include <QTextBrowser>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <vector>
 using namespace cv;
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -38,23 +42,19 @@ public:
 private slots:
 
     void on_actionOpen_triggered();
-
     void on_actionSave_triggered();
-
     void on_actionExit_triggered();
-
     void on_actionDark_Channel_Image_triggered();
-
     void on_actionTransmission_Image_triggered();
-
     void on_actionOrigial_Scene_triggered();
-
-
     void on_actionDeHaze_Control_Panel_triggered();
-
     void on_actionAbout_triggered();
-
     void on_actionCompile_Guide_triggered();
+    void on_actionDetecting_triggered();
+    void on_actionSketching_triggered();
+    void on_actionDetect_Control_Panel_triggered();
+    void on_actionOpen_Multi_triggered();
+    void on_actionDetect_Test_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -68,13 +68,18 @@ private:
     //图像数据
     Mat m_SrcImage;
     Mat m_EffectImage;
+    vector<Mat> m_SrcImageVec;
 
     bool loadImage(const QString fileName);
+    bool loadImage(const QStringList fileNames);
     bool saveImage();
-    void display(Mat mat);
+    void display(Mat &mat);
+    void display(vector<Mat> &matVec, QStringList fileNames);
 
     void imageValidInfo();
     void InitMenu();
+
+
 };
 
 #endif // MAINWINDOW_H

@@ -27,6 +27,7 @@
         <file>images/undo.png</file>
         <file>images/update.png</file>
         <file>images/user.png</file>
+        <file>images/folder-open.png</file>
     </qresource>
     <qresource prefix="/help">
         <file>compile.txt</file>

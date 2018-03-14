@@ -99,7 +99,7 @@ void Dehaze::DarkChannelImage()
 	//正常Min顺序 先对个三个通道单独进行最小值滤波 然后求每个像素在三个通道下的最小值 
 
     //最小值滤波
-    Mat minFilterMat;//CV_8UC3
+    Mat minFilterMat = Mat::zeros(m_Rows, m_Cols, CV_8UC3);
     MinFilter(m_SrcMat, minFilterMat);
 
     //计算每个像素的三个通道的最小值 最终得到暗通道图像(CV_8UC1)
@@ -159,7 +159,7 @@ void Dehaze::EstimatingTransmission()
     minimumPixelInChannles(normalMat, minimumNormalMat);
 
     //计算归一化后Mat的最小值滤波
-    Mat minNormalMat = Mat::zeros(m_Rows, m_Cols, CV_64FC1);//CV_64FC3 元素为double类型
+    Mat minNormalMat = Mat::zeros(m_Rows, m_Cols, CV_64FC1);//CV_64FC1 元素为double类型
     MinFilter(minimumNormalMat, minNormalMat);
 
     // 计算最终传导图像
@@ -440,26 +440,6 @@ void Dehaze::ShowControlPanel()
 
     layout4->addLayout(layout4_1);
 
-    //传导图像的参数设置
-    QHBoxLayout *layout6 = new QHBoxLayout();
-    QLabel *label6_1 = new QLabel(QObject::tr("Set Guide Filter Radius"));
-    QLineEdit *edit6_1 = new QLineEdit(QVariant(m_Ksize*4).toString());// m_Ksize*4
-    edit6_1->setValidator(new QRegExpValidator(QRegExp("[0-9]+$")));   //只能输入数字
-    QLabel *label6_2 = new QLabel(QObject::tr("Set Guide Filter Eps/10000"));
-    QLineEdit *edit6_2 = new QLineEdit(QVariant(10).toString());
-    edit6_2->setValidator(new QRegExpValidator(QRegExp("[0-9]+$")));   //只能输入数字
-
-
-    layout6->addWidget(label6_2);
-    layout6->addWidget(edit6_2);
-    layout6->addWidget(label6_1);
-    layout6->addWidget(edit6_1);
-
-
-
-
-
-
     //选择最小化滤波的顺序 1.暗通道图像的滤波顺序  2.估计传导图像的滤波顺序
     QVBoxLayout *layout5 = new QVBoxLayout();
 
@@ -484,9 +464,31 @@ void Dehaze::ShowControlPanel()
     layout5_2->addWidget(matSelectBox5_2);
 
 
-
     layout5->addLayout(layout5_1);
     layout5->addLayout(layout5_2);
+
+
+    //传导图像的参数设置
+    QHBoxLayout *layout6 = new QHBoxLayout();
+    QLabel *label6_1 = new QLabel(QObject::tr("Set Guide Filter Radius"));
+    QLineEdit *edit6_1 = new QLineEdit(QVariant(m_Ksize*4).toString());// m_Ksize*4
+    edit6_1->setValidator(new QRegExpValidator(QRegExp("[0-9]+$")));   //只能输入数字
+    QLabel *label6_2 = new QLabel(QObject::tr("Set Guide Filter Eps/10000"));
+    QLineEdit *edit6_2 = new QLineEdit(QVariant(10).toString());
+    edit6_2->setValidator(new QRegExpValidator(QRegExp("[0-9]+$")));   //只能输入数字
+
+
+    layout6->addWidget(label6_2);
+    layout6->addWidget(edit6_2);
+    layout6->addWidget(label6_1);
+    layout6->addWidget(edit6_1);
+
+
+
+
+
+
+
 
 
 
@@ -542,7 +544,7 @@ void Dehaze::ShowControlPanel()
 }
 
 /***在Label上显示图像***/
-void Dehaze::display(Mat &srcMat, QLabel *label)
+void Dehaze::display(const Mat &srcMat, QLabel *label)
 {
     Mat tempMat;
     QImage img;

@@ -26,11 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dehaze.cpp
+    dehaze.cpp \
+    detect.cpp \
+    test.cpp \
+    lssd.cpp
 
 HEADERS += \
         mainwindow.h \
-    dehaze.h
+    dehaze.h \
+    detect.h \
+    test.h \
+    lssd.h
 
 FORMS += \
         mainwindow.ui
