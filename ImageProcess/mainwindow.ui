@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>769</width>
+    <height>516</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>769</width>
      <height>26</height>
     </rect>
    </property>
@@ -73,13 +73,23 @@
     <property name="title">
      <string>Test</string>
     </property>
-    <addaction name="actionDetect_Test"/>
+   </widget>
+   <widget class="QMenu" name="menuMoving">
+    <property name="title">
+     <string>Moving</string>
+    </property>
+    <addaction name="actionOpen_Video"/>
+    <addaction name="separator"/>
+    <addaction name="actionFrame_Diff"/>
+    <addaction name="actionSGM"/>
+    <addaction name="actionGMM"/>
    </widget>
    <addaction name="menuOpen_O"/>
    <addaction name="menuDehaze"/>
    <addaction name="menuDetect"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menuMoving"/>
    <addaction name="menuTest"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -196,9 +206,28 @@
     <string>Open Multi</string>
    </property>
   </action>
-  <action name="actionDetect_Test">
+  <action name="actionOpen_Video">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/video.png</normaloff>:/images/images/video.png</iconset>
+   </property>
    <property name="text">
-    <string>Detect Test</string>
+    <string>Open Video</string>
+   </property>
+  </action>
+  <action name="actionFrame_Diff">
+   <property name="text">
+    <string>Frame Diff</string>
+   </property>
+  </action>
+  <action name="actionSGM">
+   <property name="text">
+    <string>SGM</string>
+   </property>
+  </action>
+  <action name="actionGMM">
+   <property name="text">
+    <string>GMM</string>
    </property>
   </action>
  </widget>

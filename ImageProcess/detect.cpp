@@ -75,9 +75,9 @@ void Detect::SelectInterest()
     //}
 
 	//test
-	for (int i = 60; i<160; i += 30)//row
+	for (int i = 60; i<160; i += 10)//row
 	{
-		for (int j =100; j<200; j += 30)//col
+		for (int j =100; j<200; j += 10)//col
 		{
 			count++;
 			//sketch

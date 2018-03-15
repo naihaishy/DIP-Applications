@@ -14,7 +14,7 @@ LSSD::LSSD(const Mat &mat)
     m_PatchSize = 5; //patch大小 5x5
     m_PatchRadius = (m_PatchSize-1)/2; //patch半径 2
 
-    m_RegionRadius = 20;//Region Image半径 也就是描述子的半径[矩形] 40
+    m_RegionRadius = 40;//Region Image半径 也就是描述子的半径[矩形] 40
     m_RegionSize = m_RegionRadius * 2 + 1;
 
     m_Margin = m_RegionRadius + m_PatchRadius;

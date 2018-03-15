@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,14 +29,18 @@ SOURCES += \
     dehaze.cpp \
     detect.cpp \
     test.cpp \
-    lssd.cpp
+    lssd.cpp \
+    gmm.cpp \
+    movingod.cpp
 
 HEADERS += \
         mainwindow.h \
     dehaze.h \
     detect.h \
     test.h \
-    lssd.h
+    lssd.h \
+    gmm.h \
+    movingod.h
 
 FORMS += \
         mainwindow.ui

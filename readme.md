@@ -13,3 +13,7 @@ Single image haze removal using dark channel prior, by He, Kaiming et.al CVPR(20
 Detecting and Sketching the Common， by Bagon et.al, CVPR
 
 Matching Local Self-Similarities across Images and Videos, by Shechtman et.al, CVPR
+
+3.Moving Object detection 
+
+帧间差 单高斯模型SGM 混合高斯模型GMM

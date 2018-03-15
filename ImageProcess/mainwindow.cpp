@@ -4,6 +4,7 @@
 #include "dehaze.h"
 #include "detect.h"
 #include "test.h"
+#include "movingod.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -343,9 +344,60 @@ void MainWindow::on_actionDetect_Control_Panel_triggered()
 }
 
 
-void MainWindow::on_actionDetect_Test_triggered()
-{
 
+/******作业3: moving object detection******/
+void MainWindow::on_actionOpen_Video_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Load video"), tr(""), tr("Video (*.mp4 *.avi *.wav)") );
+
+    if(!fileName.isEmpty())
+    {
+        m_SrcVideoPath = fileName;
+        QMessageBox box(this);
+        box.setWindowTitle(tr("Video Load Success"));
+        box.setIcon(QMessageBox::Warning);
+        box.setText(tr("Play Video \r") + CurrentFile + "?");
+        QPushButton *yesBtn = box.addButton(tr("Yes"), QMessageBox::YesRole);
+        QPushButton *noBtn = box.addButton(tr("No"), QMessageBox::NoRole);
+        box.exec();
+        QPushButton* clickedButton =(QPushButton*)box.clickedButton();
+        if ( clickedButton== yesBtn)
+            playVideo(m_SrcVideoPath); // 播放视频
+    }
+}
+
+//播放视频
+void MainWindow::playVideo(QString videoPath)
+{
+    QMediaPlayer *videoPlayer = new QMediaPlayer;
+
+    videoPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(videoPath)));
+
+    QVideoWidget *videoWidget = new QVideoWidget;
+
+    videoPlayer->setVideoOutput(videoWidget);
+
+    videoWidget->show();
+    videoPlayer->play();
+
+}
+//帧间差
+void MainWindow::on_actionFrame_Diff_triggered()
+{
+    MovingOD::FrameDiffDetection(m_SrcVideoPath.toStdString());
+}
+
+//单高斯模型
+void MainWindow::on_actionSGM_triggered()
+{
+    MovingOD::SGMTest(m_SrcVideoPath.toStdString());
+
+}
+
+//混合高斯模型
+void MainWindow::on_actionGMM_triggered()
+{
+    MovingOD::GMMDetection(m_SrcVideoPath.toStdString());
 }
 
 

@@ -18,6 +18,10 @@
 #include <QTextBrowser>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QMediaPlayer>
+#include <QtMultimedia>
+#include <QtMultimediaWidgets>
+
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -54,7 +58,15 @@ private slots:
     void on_actionSketching_triggered();
     void on_actionDetect_Control_Panel_triggered();
     void on_actionOpen_Multi_triggered();
-    void on_actionDetect_Test_triggered();
+
+
+    void on_actionFrame_Diff_triggered();
+
+    void on_actionSGM_triggered();
+
+    void on_actionGMM_triggered();
+
+    void on_actionOpen_Video_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -70,6 +82,8 @@ private:
     Mat m_EffectImage;
     vector<Mat> m_SrcImageVec;
 
+    QString m_SrcVideoPath;//路径
+
     bool loadImage(const QString fileName);
     bool loadImage(const QStringList fileNames);
     bool saveImage();
@@ -80,6 +94,7 @@ private:
     void InitMenu();
 
 
+    void playVideo(QString videoPath);
 };
 
 #endif // MAINWINDOW_H
