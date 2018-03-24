@@ -83,6 +83,9 @@
     <addaction name="actionFrame_Diff"/>
     <addaction name="actionSGM"/>
     <addaction name="actionGMM"/>
+    <addaction name="separator"/>
+    <addaction name="actionMeanShift"/>
+    <addaction name="actionCamShift"/>
    </widget>
    <addaction name="menuOpen_O"/>
    <addaction name="menuDehaze"/>
@@ -228,6 +231,16 @@
   <action name="actionGMM">
    <property name="text">
     <string>GMM</string>
+   </property>
+  </action>
+  <action name="actionMeanShift">
+   <property name="text">
+    <string>MeanShift</string>
+   </property>
+  </action>
+  <action name="actionCamShift">
+   <property name="text">
+    <string>CamShift</string>
    </property>
   </action>
  </widget>

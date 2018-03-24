@@ -10,6 +10,7 @@ LSSD::LSSD(const Mat &mat)
 
     m_Rows = m_SrcMat.rows;//宽度
     m_Cols = m_SrcMat.cols;//高度
+	m_Size = m_Rows * m_Cols;
 
     m_PatchSize = 5; //patch大小 5x5
     m_PatchRadius = (m_PatchSize-1)/2; //patch半径 2
@@ -48,7 +49,7 @@ int LSSD::getMargin()
 void LSSD::CalcSelfSimilarityDescriptor()
 {
     //descriptors
-    vector<LSSDescriptor> descriptors1, descriptors2;
+    vector<LSSDescriptor> descriptors1(m_Size), descriptors2(m_Size);
 
     //计算图像中每个像素的描述子
     CalcDescriptorofSepcifiedMat(descriptors1);
@@ -65,12 +66,13 @@ void LSSD::CalcSelfSimilarityDescriptor()
 //计算一幅图像的描述子
 void LSSD::CalcDescriptorofSepcifiedMat(vector<LSSDescriptor> &descriptors)
 {
+	int binSize = m_Angles * m_Radials;//20x4=80
     //计算图像中每个像素的描述子
     for (int i = m_Margin; i<m_Rows - m_Margin -1; ++i)
     {
         for (int j = m_Margin; j<m_Cols - m_Margin -1; ++j)
         {
-            vector<double> bins;
+            vector<double> bins(binSize);
             CalcDescriptorofSepcifiedPixel(i, j, bins);
             LSSDescriptor descriptor(i, j, bins);
             descriptors.push_back(descriptor);
@@ -137,7 +139,6 @@ void LSSD::CalcSSDofSepcifiedPixel(int row, int col, Mat &ssdMat)
         }
     }
 
-	int c = count;
 
 }
 

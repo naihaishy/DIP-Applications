@@ -31,7 +31,9 @@ SOURCES += \
     test.cpp \
     lssd.cpp \
     gmm.cpp \
-    movingod.cpp
+    movingod.cpp \
+    tracker.cpp \
+
 
 HEADERS += \
         mainwindow.h \
@@ -40,10 +42,13 @@ HEADERS += \
     test.h \
     lssd.h \
     gmm.h \
-    movingod.h
+    movingod.h \
+    tracker.h \
+
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+
 
 TRANSLATIONS = ImageProcess_CN.ts
 

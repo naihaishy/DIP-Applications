@@ -5,6 +5,7 @@
 #include "detect.h"
 #include "test.h"
 #include "movingod.h"
+#include "tracker.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -401,3 +402,34 @@ void MainWindow::on_actionGMM_triggered()
 }
 
 
+
+void MainWindow::on_actionCamShift_triggered()
+{
+    Tracker *tracker = new Tracker();
+    QMessageBox box(this);
+    box.setWindowTitle(tr("CamShift"));
+    box.setIcon(QMessageBox::Warning);
+    box.setText(tr("Yes to Select Video\r No to Open Camera"));
+    QPushButton *yesBtn = box.addButton(tr("Yes"), QMessageBox::YesRole);
+    QPushButton *noBtn = box.addButton(tr("No"), QMessageBox::NoRole);
+    box.exec();
+    QPushButton* clickedButton =(QPushButton*)box.clickedButton();
+    if ( clickedButton== yesBtn)
+    {
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Load video"), tr(""), tr("Video (*.mp4 *.avi *.wav)") );
+        if(!fileName.isEmpty())
+        {
+            tracker->CamShiftTracker(fileName.toStdString());
+        }
+    }
+
+    if ( clickedButton== noBtn)
+    {
+        tracker->CamShiftTracker("");
+    }
+
+
+
+
+
+}

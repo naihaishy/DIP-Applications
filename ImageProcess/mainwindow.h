@@ -68,6 +68,8 @@ private slots:
 
     void on_actionOpen_Video_triggered();
 
+    void on_actionCamShift_triggered();
+
 private:
     Ui::MainWindow *ui;
 

@@ -19,6 +19,7 @@ struct LSSDescriptor
     int row;
     int col;
     vector<double> value;
+	LSSDescriptor() :row(-1), col(-1), value(0) {}
     LSSDescriptor(int i, int j, vector<double> v):row(i),col(j), value(v) {}
 };
 
@@ -41,6 +42,7 @@ private:
     Mat m_SrcMat;//
     int m_Rows;
     int m_Cols;
+	int m_Size;//图像像素数目
 
     int m_PatchSize;//Patch大小 5x5
     int m_PatchRadius;//patch radius

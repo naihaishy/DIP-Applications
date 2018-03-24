@@ -17,3 +17,6 @@ Matching Local Self-Similarities across Images and Videos, by Shechtman et.al, C
 3.Moving Object detection 
 
 帧间差 单高斯模型SGM 混合高斯模型GMM
+
+4.Tracking
+Camshift 
