@@ -70,6 +70,16 @@ private slots:
 
     void on_actionCamShift_triggered();
 
+    void on_actionSIFT_triggered();
+
+    void on_actionHarris_Corner_triggered();
+
+    void on_actionLBP_triggered();
+
+    void on_actionCustomLBP_triggered();
+
+    void on_actionMatching_triggered();
+
 private:
     Ui::MainWindow *ui;
 

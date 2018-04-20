@@ -6,6 +6,9 @@
 #include "test.h"
 #include "movingod.h"
 #include "tracker.h"
+#include "feature.h"
+#include "faceview.h"
+#include "stereomatch.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -432,4 +435,45 @@ void MainWindow::on_actionCamShift_triggered()
 
 
 
+}
+
+void MainWindow::on_actionSIFT_triggered()
+{
+    if(m_SrcImageVec.size()!=2)
+    {
+        QMessageBox::warning(this, tr("Image Process"), tr("Only Two Images are needed\nPlease Reload two images"));
+        return ;
+    }
+    NaieFeature::SIFT *sift = new NaieFeature::SIFT(m_SrcImageVec);
+    sift->doing();
+
+}
+
+void MainWindow::on_actionHarris_Corner_triggered()
+{
+    if(m_SrcImage.empty())
+    {
+        QMessageBox::warning(this, tr("Image Process"), tr("Image data is empty\nPlease load image"));
+        return;
+    }
+    //using namespace NaieFeature;
+    NaieFeature::HarrisCorner *harrisCorner = new NaieFeature::HarrisCorner(m_SrcImage);
+    harrisCorner->doing();
+}
+
+void MainWindow::on_actionLBP_triggered()
+{
+    FaceView *faceView = new FaceView(this);
+    faceView->show();
+}
+
+void MainWindow::on_actionCustomLBP_triggered()
+{
+
+}
+
+void MainWindow::on_actionMatching_triggered()
+{
+    StereoMatch *match = new StereoMatch(this);
+    match->show();
 }

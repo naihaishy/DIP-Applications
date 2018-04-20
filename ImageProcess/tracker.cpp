@@ -144,8 +144,7 @@ void Tracker::CamShiftTracker(string videoFile = ""){
 	}
 
 
-	destroyWindow("CamShift");
-	destroyWindow("Hist");
+	destroyAllWindows();
 
 
 

@@ -19,7 +19,7 @@ struct LSSDescriptor
     int row;
     int col;
     vector<double> value;
-	LSSDescriptor() :row(-1), col(-1), value(0) {}
+    LSSDescriptor() :row(-1), col(-1), value(0) {}
     LSSDescriptor(int i, int j, vector<double> v):row(i),col(j), value(v) {}
 };
 

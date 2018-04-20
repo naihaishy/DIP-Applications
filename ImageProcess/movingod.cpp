@@ -50,8 +50,7 @@ void MovingOD::FrameDiffDetection(string videoPath)
             }
         }
     }
-	destroyWindow("foreground");
-	destroyWindow("origin");
+	destroyAllWindows();
     frame.release();
 }
 
@@ -110,9 +109,7 @@ void MovingOD::GMMDetection(string videoPath)
 
     }
 
-	destroyWindow("foreground");
-	destroyWindow("background");
-	destroyWindow("video");
+	destroyAllWindows();
     foreground.release();
     background.release();
 }
@@ -283,8 +280,6 @@ void MovingOD::SGMTest(string videoPath)
     }
 
 
-	destroyWindow("foreground");
-	destroyWindow("background");
-	destroyWindow("origin");
+	destroyAllWindows();
 
 }

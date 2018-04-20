@@ -30,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>769</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOpen_O">
@@ -87,10 +87,34 @@
     <addaction name="actionMeanShift"/>
     <addaction name="actionCamShift"/>
    </widget>
+   <widget class="QMenu" name="menuFeature">
+    <property name="title">
+     <string>Feature</string>
+    </property>
+    <addaction name="actionSIFT"/>
+    <addaction name="separator"/>
+    <addaction name="actionHarris_Corner"/>
+   </widget>
+   <widget class="QMenu" name="menuFace">
+    <property name="title">
+     <string>Face</string>
+    </property>
+    <addaction name="actionLBP"/>
+    <addaction name="actionCustomLBP"/>
+   </widget>
+   <widget class="QMenu" name="menuStereo">
+    <property name="title">
+     <string>Stereo</string>
+    </property>
+    <addaction name="actionMatching"/>
+   </widget>
    <addaction name="menuOpen_O"/>
    <addaction name="menuDehaze"/>
    <addaction name="menuDetect"/>
    <addaction name="menuMoving"/>
+   <addaction name="menuFeature"/>
+   <addaction name="menuFace"/>
+   <addaction name="menuStereo"/>
    <addaction name="menuTest"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -241,6 +265,31 @@
   <action name="actionCamShift">
    <property name="text">
     <string>CamShift</string>
+   </property>
+  </action>
+  <action name="actionSIFT">
+   <property name="text">
+    <string>SIFT</string>
+   </property>
+  </action>
+  <action name="actionHarris_Corner">
+   <property name="text">
+    <string>Harris Corner</string>
+   </property>
+  </action>
+  <action name="actionLBP">
+   <property name="text">
+    <string>LBP</string>
+   </property>
+  </action>
+  <action name="actionCustomLBP">
+   <property name="text">
+    <string>CustomLBP</string>
+   </property>
+  </action>
+  <action name="actionMatching">
+   <property name="text">
+    <string>Matching</string>
    </property>
   </action>
  </widget>

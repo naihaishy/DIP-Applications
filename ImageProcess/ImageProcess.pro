@@ -33,6 +33,11 @@ SOURCES += \
     gmm.cpp \
     movingod.cpp \
     tracker.cpp \
+    feature.cpp \
+    common.cpp\
+    face.cpp \
+    faceview.cpp \
+    stereomatch.cpp
 
 
 HEADERS += \
@@ -44,10 +49,17 @@ HEADERS += \
     gmm.h \
     movingod.h \
     tracker.h \
+    feature.h \
+    common.h\
+    face.h \
+    faceview.h \
+    stereomatch.h
 
 
 FORMS += \
         mainwindow.ui \
+    faceview.ui \
+    stereomatch.ui
 
 
 TRANSLATIONS = ImageProcess_CN.ts
